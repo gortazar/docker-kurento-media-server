@@ -1,6 +1,6 @@
 # Kurento Media Server
 #
-# VERSION               6.0.0
+# VERSION               6.1.0
 
 FROM      ubuntu:14.04
 MAINTAINER Patxi Gortázar <patxi.gortazar@gmail.com>
@@ -13,8 +13,11 @@ RUN apt-get update \
 	&& apt-get update \
 	&& apt-get -y install kurento-media-server-6.0 \
 	&& apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+        && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8888
 
+ENV GST_DEBUG=Kurento*:5
+
 ENTRYPOINT ["/usr/bin/kurento-media-server"]
+CMD ["2>&1"]
